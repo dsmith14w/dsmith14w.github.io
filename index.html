@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Today's Date</title>
-  <Script>
+  <script>
 /**
  * Modern browsers can download files that aren't from same origin this is a workaround to download a remote file
  * @param `url` Remote URL for the file to be downloaded
@@ -38,24 +38,25 @@ function Download({ url, filename }) {
     <button
       disabled={fetching}
       onClick={()=> download(url, filename)}
-      aria-label="download gif"
+      aria-label="download file"
     >
       DOWNLOAD
     </button>
   );
 }
-  </Script>
+  </script>
+  
 </head>
 <body>
 <h1>My Github Pages site</h1>
- <p><i></i>Version 1.008</i></p>
+ <p><i></i>Version 1.009</i></p>
  
 <h2>SCOMathon Presentation 2024</h2> 
  <p>Link to Repository for <a href="https://github.com/dsmith14w/VeeamBackupMP" target="_blank">Veeam Backup MP</a></p>
  <p><a href="https://github.com/dsmith14w/VeeamBackupMP/blob/main/Custom.Veeam.Backups.xml" target="_blank">
     <img src="images/Speaker_Social_asset_2.png" alt="SCOMAthon 2024" width="600" height="400">
   </a></p>
- <p>Custom.Veeam.Backup.xml <a href="https://github.com/dsmith14w/VeeamBackupMP/blob/main/Custom.Veeam.Backups.xml" download>MP at Github</a>
+ <p>Custom.Veeam.Backup.xml <a href="https://github.com/dsmith14w/VeeamBackupMP/blob/main/Custom.Veeam.Backups.xml"  target="_blank">MP at Github</a>
    <button type="button" onclick='Download("https://github.com/dsmith14w/VeeamBackupMP/blob/main/Custom.Veeam.Backups.xml","Custom.Veeam.Backups.xml")'>Download</button>
   </p>
  <p><a href="SCOMathon2024-MPdoc.html" target="_Blank">MP Doc</a></p>
