@@ -1,15 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Today's Date</title>
+  <Script>
+/**
+ * Modern browsers can download files that aren't from same origin this is a workaround to download a remote file
+ * @param `url` Remote URL for the file to be downloaded
+ */
+function Download({ url, filename }) {
+   const [fetching, setFetching] = useState(false);
+  const [error, setError] = useState(false);
+
+  const download = (url, name) => {
+    if (!url) {
+      throw new Error("Resource URL not provided! You need to provide one");
+    }
+    setFetching(true);
+    fetch(url)
+      .then(response => response.blob())
+      .then(blob => {
+        setFetching(false);
+        const blobURL = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobURL;
+        a.style = "display: none";
+
+        if (name && name.length) a.download = name;
+        document.body.appendChild(a);
+        a.click();
+      })
+      .catch(() => setError(true));
+  };
+
+  return (
+    <button
+      disabled={fetching}
+      onClick={()=> download(url, filename)}
+      aria-label="download gif"
+    >
+      DOWNLOAD
+    </button>
+  );
+}
+  </Script>
+</head>
 <body>
 <h1>My Github Pages site</h1>
- <p><i></i>Version 1.007</i></p>
+ <p><i></i>Version 1.008</i></p>
  
 <h2>SCOMathon Presentation 2024</h2> 
  <p>Link to Repository for <a href="https://github.com/dsmith14w/VeeamBackupMP" target="_blank">Veeam Backup MP</a></p>
  <p><a href="https://github.com/dsmith14w/VeeamBackupMP/blob/main/Custom.Veeam.Backups.xml" target="_blank">
     <img src="images/Speaker_Social_asset_2.png" alt="SCOMAthon 2024" width="600" height="400">
   </a></p>
-<p>Custom.Veeam.Backup.xml <a href="https://github.com/dsmith14w/VeeamBackupMP/blob/main/Custom.Veeam.Backups.xml" download>MP download</a></p>
+ <p>Custom.Veeam.Backup.xml <a href="https://github.com/dsmith14w/VeeamBackupMP/blob/main/Custom.Veeam.Backups.xml" download>MP at Github</a>
+   <button type="button" onclick='Download("https://github.com/dsmith14w/VeeamBackupMP/blob/main/Custom.Veeam.Backups.xml","Custom.Veeam.Backups.xml")'>Download</button>
+  </p>
  <p><a href="SCOMathon2024-MPdoc.html" target="_Blank">MP Doc</a></p>
 </body>
 </html>
